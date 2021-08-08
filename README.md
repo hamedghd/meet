@@ -5,7 +5,7 @@ Meet is a serverless, progressive web application (PWA) developed with React usi
 
 ## User stories
 
-Markup : 1. As a user I should be able to “filter events by city” So that I can see the list of events that take place in that city.
+         1. As a user I should be able to “filter events by city” So that I can see the list of events that take place in that city.
            i. Scenario 1: When user hasn’t searched for a city, show upcoming events from all cities.
            ii. Scenario 2: User should see a list of suggestions when they search for a city.
            iii. Scenario 3: User can select a city from the suggested list.
