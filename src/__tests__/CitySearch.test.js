@@ -5,9 +5,10 @@ import { mockData } from '../mock-data';
 import { extractLocations } from '../api';
 
 describe('<CitySearch /> component', () => {
-  let CitySearchWrapper;
+  let locations, CitySearchWrapper;
   beforeAll(() => {
-    CitySearchWrapper = shallow(<CitySearch />);
+    locations = extractLocations(mockData);
+    CitySearchWrapper = shallow(<CitySearch locations={locations} />);
   });
   // Here, the test checks whether an element with the class name city exists within the CitySearchWrapper component.
   test('render text input', () => {
