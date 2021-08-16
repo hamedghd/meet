@@ -13,4 +13,32 @@ describe('<CitySearch /> component', () => {
     const CitySearchWrapper = shallow(<CitySearch />);
     expect(CitySearchWrapper.find('.suggestions')).toHaveLength(1);
   });
+  // This test compares the value prop of each element that has the class city found within the CitySearch component,
+  // and checks if the input field's value prop is equal to what’s in the CitySearch query state, only passing if the two match.
+  test('renders text input correctly', () => {
+    const CitySearchWrapper = shallow(<CitySearch />);
+    const query = CitySearchWrapper.state('query');
+    expect(CitySearchWrapper.find('.city').prop('value')).toBe(query);
+  });
+  // 
+  test('change state when text input changes', () => {
+    const CitySearchWrapper = shallow(<CitySearch />);
+    CitySearchWrapper.setState({
+      query: 'Munich'
+    });
+    const eventObject = { target: { value: 'Berlin' } };
+    CitySearchWrapper.find('.city').simulate('change', eventObject);
+    expect(CitySearchWrapper.state('query')).toBe('Berlin');
+  });
+  //
+  test('render list of suggestions correctly', () => {
+    const locations = extractLocations(mockData);
+    const CitySearchWrapper = shallow(<CitySearch />);
+    CitySearchWrapper.setState({ suggestions: locations });
+    const suggestions = CitySearchWrapper.state('suggestions');
+    expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(suggestions.length + 1);
+    for (let i = 0; i < suggestions.length; i += 1) {
+      expect(CitySearchWrapper.find('.suggestions li').at(i).text()).toBe(suggestions[i]);
+    }
+  });
 });
