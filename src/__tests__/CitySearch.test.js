@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import CitySearch from '../CitySearch';
+import { mockData } from '../mock-data';
+import { extractLocations } from '../api';
 
 describe('<CitySearch /> component', () => {
   // Here, the test checks whether an element with the class name city exists within the CitySearchWrapper component.
