@@ -5,7 +5,14 @@ class Event extends Component {
     super(props);
     this.state = {
       event: {},
+      expanded: false,
     };
+    this.toggleExpanded = this.toggleExpanded.bind(this);
+  }
+  toggleExpanded() {
+    this.setState({
+      expanded: !this.state.expanded,
+    });
   }
   render() {
     const { event } = this.props;
@@ -13,7 +20,8 @@ class Event extends Component {
       <div className="basic-info">
 
       </div>
-      <button className="details-btn">
+      <button className="details-btn" onClick={this.toggleExpanded}>
+        {!this.state.expanded ? 'Show Details' : 'Hide Details'}
       </button>
     </div>;
   }
