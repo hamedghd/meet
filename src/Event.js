@@ -13,6 +13,8 @@ class Event extends Component {
       <div className="basic-info">
 
       </div>
+      <button className="details-btn">
+      </button>
     </div>;
   }
 }
