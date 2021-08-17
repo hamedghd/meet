@@ -16,4 +16,8 @@ describe('<Event /> component', () => {
   test('render basic event information', () => {
     expect(EventWrapper.find('.basic-info')).toHaveLength(1);
   });
+  //
+  test('have a show details button', () => {
+    expect(EventWrapper.find('.details-btn')).toHaveLength(1);
+  });
 });
