@@ -20,4 +20,10 @@ describe('<Event /> component', () => {
   test('have a show details button', () => {
     expect(EventWrapper.find('.details-btn')).toHaveLength(1);
   });
+  //
+  test('event details expand on click', () => {
+    EventWrapper.setState({ expanded: false });
+    EventWrapper.find('.details-btn').simulate('click');
+    expect(EventWrapper.state('expanded')).toBe(true);
+  });
 });
