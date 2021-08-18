@@ -7,6 +7,7 @@
  * The Set will remove all duplicates from the array.
  */
 import { mockData } from './mock-data';
+import axios from 'axios';
 
 export const extractLocations = (events) => {
   var extractLocations = events.map((event) => event.location);
