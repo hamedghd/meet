@@ -3,7 +3,7 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { getEvents } from './api';
+import { getEvents, extractLocations } from './api';
 import './nprogress.css';
 
 class App extends Component {
@@ -12,10 +12,18 @@ class App extends Component {
     locations: []
   }
   componentDidMount() {
+    this.mounted = true;
     getEvents().then((events) => {
-      this.setState({ events, locations: extractLocations(events) });
+      if (this.mounted) {
+        this.setState({ events, locations: extractLocations(events) });
+      }
     });
   }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   updateEvents = (location) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
