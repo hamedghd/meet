@@ -15,13 +15,25 @@ class CitySearch extends Component {
       query: value,
       suggestions,
     });
+    if (value === '') {
+      this.setState({
+        suggestions: [],
+        query: '',
+        showSuggestions: false,
+      });
+    } else {
+      return this.setState({
+        query: value,
+        suggestions,
+      });
+    }
   };
   handleItemClicked = (suggestion) => {
     this.setState({
       query: suggestion,
       showSuggestions: false
     });
-    this.props.updateEvents(suggestion);
+    this.props.updateEvents(suggestion, 0);
   }
   render() {
     return (
@@ -41,7 +53,7 @@ class CitySearch extends Component {
             >{suggestion}</li>
           ))}
           <li onClick={() => this.handleItemClicked("all")}>
-            <b>See all cities</b>
+            <b className="seeAllCities">See all cities</b>
           </li>
         </ul>
       </div>
