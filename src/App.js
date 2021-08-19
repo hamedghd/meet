@@ -9,7 +9,9 @@ import './nprogress.css';
 class App extends Component {
   state = {
     events: [],
-    locations: []
+    locations: [],
+    currentLocation: 'all',
+    numberOfEvents: 32,
   }
   componentDidMount() {
     this.mounted = true;
