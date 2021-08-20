@@ -6,6 +6,7 @@ import CitySearch from '../CitySearch';
 import NumberOfEvents from '../NumberOfEvents';
 import { mockData } from '../mock-data';
 import { extractLocations, getEvents } from '../api';
+import { waitFor } from "@testing-library/react";
 
 describe('<App /> component', () => {
   let AppWrapper;
@@ -76,7 +77,7 @@ describe('<App /> integration', () => {
     );
     AppWrapper.unmount();
   });
-
+  //
   test('App should render a number of 32 events by default', () => {
     const AppWrapper = mount(<App />);
     const numberOfEventsItems = AppWrapper.find(NumberOfEvents).find(
@@ -85,7 +86,7 @@ describe('<App /> integration', () => {
     expect(numberOfEventsItems.props().value).toEqual(32);
     AppWrapper.unmount();
   });
-
+  //
   test("App should change number of events when 'NumberOfEvents' component changes from 32 to 14", async () => {
     const AppWrapper = mount(<App />);
     const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
@@ -95,6 +96,23 @@ describe('<App /> integration', () => {
     expect(NumberOfEventsWrapper.state('eventCount')).toEqual(14);
     AppWrapper.unmount();
   });
+  //
+  test("Change in the number of events should be led to changes on the EventList component.", async () => {
 
+    const AppWrapper = mount(<App />);
+    const locations = extractLocations(mockData);
+    AppWrapper.setState({ numberOfEvents: "32", locations: "all" });
+    const eventObject = { target: { value: 1 } };
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    await NumberOfEventsWrapper.find(".event-number-input").simulate(
+      "change",
+      eventObject
+    );
+    await waitFor(() => {
+      AppWrapper.update();
+      expect(AppWrapper.find(EventList).props().events).toHaveLength(1);
+    });
+    AppWrapper.unmount();
+  });
 });
 
