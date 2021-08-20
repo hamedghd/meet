@@ -4,6 +4,7 @@ import { mount, shallow } from "enzyme";
 import App from "../App";
 import Event from "../Event";
 import { mockData } from "../mock-data";
+import NumberOfEvents from '../NumberOfEvents';
 
 const feature = loadFeature("./src/features/specifyNumberOfEvents.feature");
 defineFeature(feature, test => {
