@@ -15,18 +15,6 @@ class CitySearch extends Component {
       query: value,
       suggestions,
     });
-    if (value === '') {
-      this.setState({
-        suggestions: [],
-        query: '',
-        showSuggestions: false,
-      });
-    } else {
-      return this.setState({
-        query: value,
-        suggestions,
-      });
-    }
   };
   handleItemClicked = (suggestion) => {
     this.setState({
