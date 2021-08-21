@@ -32,7 +32,7 @@ class App extends Component {
   updateEvents = (location, eventCount) => {
     this.mounted = true;
     getEvents().then((events) => {
-      const locationEvents = (location === 'all' && eventCount == 0) ?
+      const locationEvents = (location === 'all' && eventCount === 0) ?
         events : location !== 'all' && eventCount === 0
           ? events.filter((event) => event.location === location)
           : events.slice(0, eventCount);
