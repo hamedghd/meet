@@ -23,24 +23,25 @@ class App extends Component {
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
-
-
-    getEvents().then((events) => {
-      if (!navigator.onLine) {
-        this.setState({
-          warningText:
-            'You are currently using the app offline and viewing data from your last visit. Data will not be up-to-date.',
-        });
-      } else {
-        this.setState({ warningText: '' });
-      }
-      if (this.mounted) {
-        this.setState({
-          events: events.slice(0, this.state.numberOfEvents),
-          locations: extractLocations(events)
-        });
-      }
-    });
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
+      getEvents().then((events) => {
+        if (!navigator.onLine) {
+          this.setState({
+            warningText:
+              'You are currently using the app offline and viewing data from your last visit. Data will not be up-to-date.',
+          });
+        } else {
+          this.setState({ warningText: '' });
+        }
+        if (this.mounted) {
+          this.setState({
+            events: events.slice(0, this.state.numberOfEvents),
+            locations: extractLocations(events)
+          });
+        }
+      });
+    }
   }
 
   componentWillUnmount() {
