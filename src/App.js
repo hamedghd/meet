@@ -28,6 +28,12 @@ class App extends Component {
     // In case that the code or access_token are valid, then it gets events
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({
+            events: events.slice(0, this.state.numberOfEvents),
+            locations: extractLocations(events)
+          });
+        }
         if (!navigator.onLine) {
           this.setState({
             warningText:
@@ -35,12 +41,6 @@ class App extends Component {
           });
         } else {
           this.setState({ warningText: '' });
-        }
-        if (this.mounted) {
-          this.setState({
-            events: events.slice(0, this.state.numberOfEvents),
-            locations: extractLocations(events)
-          });
         }
       });
     }
