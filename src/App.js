@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
+import { WarningAlert } from './Alert';
 import './nprogress.css';
 
 class App extends Component {
@@ -12,10 +13,19 @@ class App extends Component {
     locations: [],
     currentLocation: 'all',
     numberOfEvents: 32,
+    warningText: '',
   }
   componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
+      if (!navigator.onLine) {
+        this.setState({
+          warningText:
+            'You are currently using the app offline and viewing data from your last visit. Data will not be up-to-date.',
+        });
+      } else {
+        this.setState({ warningText: '' });
+      }
       if (this.mounted) {
         this.setState({
           events: events.slice(0, this.state.numberOfEvents),
@@ -48,6 +58,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Meet Application</h1>
+        <WarningAlert text={warningText} />
         <h2>Please choose your nearest city:</h2>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
