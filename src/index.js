@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './service-worker';
 import reportWebVitals from './reportWebVitals';
 import * as atatus from 'atatus-spa';
 atatus.config('0d7a0c68a89d49b1866d5f13ae983df8').install();
