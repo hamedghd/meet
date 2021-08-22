@@ -23,23 +23,27 @@ class App extends Component {
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
-    //this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    getEvents().then((events) => {
-      if (!navigator.onLine) {
-        this.setState({
-          warningText:
-            'You are currently using the app offline and viewing data from your last visit. Data will not be up-to-date.',
-        });
-      } else {
-        this.setState({ warningText: '' });
-      }
-      if (this.mounted) {
-        this.setState({
-          events: events.slice(0, this.state.numberOfEvents),
-          locations: extractLocations(events)
-        });
-      }
-    });
+    // It doesn't show the welcome screen, if the code in url or access_token is valid.
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    // In case that the code or access_token are valid, then it gets events
+    if ((code || isTokenValid) && this.mounted) {
+      getEvents().then((events) => {
+        if (!navigator.onLine) {
+          this.setState({
+            warningText:
+              'You are currently using the app offline and viewing data from your last visit. Data will not be up-to-date.',
+          });
+        } else {
+          this.setState({ warningText: '' });
+        }
+        if (this.mounted) {
+          this.setState({
+            events: events.slice(0, this.state.numberOfEvents),
+            locations: extractLocations(events)
+          });
+        }
+      });
+    }
   }
 
   componentWillUnmount() {
