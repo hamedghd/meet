@@ -24,7 +24,14 @@ class App extends Component {
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
     // It doesn't show the welcome screen, if the code in url or access_token is valid.
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    //this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    this.setState({
+      showWelcomeScreen: !(
+        code ||
+        isTokenValid ||
+        window.location.hostname === 'localhost'
+      )
+    });
     // In case that the code or access_token are valid, then it gets events
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
