@@ -65,7 +65,7 @@ class App extends Component {
       }
     });
   }
-  //
+  // Creates a function to get the total number of events happening in each city
   getData = () => {
     const { locations, events } = this.state;
     const data = locations.map((location) => {
