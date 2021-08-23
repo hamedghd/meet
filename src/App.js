@@ -68,9 +68,7 @@ class App extends Component {
   render() {
     // When the showWelcomeScreen state is undefined,
     // an empty div will be rendered until the state gets either true or false
-    if (this.state.showWelcomeScreen === undefined) return <div className="App">
-      <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
-    </div>
+    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div className="App">
         <h1>Meet Application</h1>
@@ -79,6 +77,7 @@ class App extends Component {
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
