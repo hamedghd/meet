@@ -41,6 +41,7 @@ class App extends Component {
             locations: extractLocations(events)
           });
         }
+        /*
         if (!navigator.onLine) {
           this.setState({
             warningText:
@@ -49,6 +50,22 @@ class App extends Component {
         } else {
           this.setState({ warningText: '' });
         }
+        */
+      });
+    }
+    window.addEventListener('offline', this.toggleOfflineMessage);
+    window.addEventListener('online', this.toggleOfflineMessage);
+
+  }
+
+  toggleOfflineMessage() {
+    if (!navigator.onLine) {
+      this.setState({
+        infoText: "Offline mode!",
+      });
+    } else {
+      this.setState({
+        infoText: "",
       });
     }
   }
