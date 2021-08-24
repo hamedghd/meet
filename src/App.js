@@ -41,40 +41,18 @@ class App extends Component {
             locations: extractLocations(events)
           });
         }
-        /*
-        if (!navigator.onLine) {
-          this.setState({
-            warningText:
-              'You are currently using the app offline and viewing data from your last visit. Data will not be up-to-date.',
-          });
-        } else {
-          this.setState({ warningText: '' });
-        }
-        */
       });
     }
     if (navigator.onLine) {
       console.log('online');
-    } else {
-      console.log('offline');
-    }
-    //window.addEventListener('offline', this.toggleOfflineMessage);
-    //window.addEventListener('online', this.toggleOfflineMessage);
-    //window.addEventListener('offline', function (e) { console.log('offline'); });
-    //window.addEventListener('online', function (e) { console.log('online'); });
-  }
-
-  toggleOfflineMessage() {
-    if (!navigator.onLine) {
-      this.setState({
-        warningText: "You are currently using the app offline.",
-      });
-      console.log('Offline mode');
-    } else {
       this.setState({
         warningText: "",
       });
-      console.log('Online mode');
+    } else {
+      console.log('offline');
+      this.setState({
+        warningText: "You are currently using the app offline.",
+      });
     }
   }
 
