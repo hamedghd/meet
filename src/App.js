@@ -61,11 +61,11 @@ class App extends Component {
   toggleOfflineMessage() {
     if (!navigator.onLine) {
       this.setState({
-        infoText: "Offline mode!",
+        warningText: "You are currently using the app offline.",
       });
     } else {
       this.setState({
-        infoText: "",
+        warningText: "",
       });
     }
   }
