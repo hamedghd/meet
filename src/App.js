@@ -63,10 +63,12 @@ class App extends Component {
       this.setState({
         warningText: "You are currently using the app offline.",
       });
+      console.log('Offline mode');
     } else {
       this.setState({
         warningText: "",
       });
+      console.log('Online mode');
     }
   }
 
