@@ -53,9 +53,10 @@ class App extends Component {
         */
       });
     }
-    window.addEventListener('offline', this.toggleOfflineMessage);
-    window.addEventListener('online', this.toggleOfflineMessage);
-
+    //window.addEventListener('offline', this.toggleOfflineMessage);
+    //window.addEventListener('online', this.toggleOfflineMessage);
+    window.addEventListener('offline', function (e) { console.log('offline'); });
+    window.addEventListener('online', function (e) { console.log('online'); });
   }
 
   toggleOfflineMessage() {
