@@ -107,12 +107,12 @@ class App extends Component {
               <CartesianGrid />
               <XAxis
                 type="category" dataKey="city" name="city"
-                label={{ value: 'Pages', position: 'insideBottomCenter', dy: 20 }}
+                label={{ value: 'city', position: 'insideBottomCenter', dy: 20 }}
               />
               <YAxis
                 allowDecimals={false}
                 type="number" dataKey="number" name="number of events"
-                label={{ value: 'Index', angle: -90, position: 'insideLeft' }}
+                label={{ value: 'number of events', angle: -90, position: 'insideLeft' }}
               />
               <Tooltip cursor={{ strokeDasharray: "3 3" }} />
               <Scatter data={this.getData()} fill="#8884d8" />
