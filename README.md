@@ -21,3 +21,23 @@ Meet is a serverless, progressive web application (PWA) developed with React usi
       *   Scenario 2: Show error when user changes the settings (city, time range).
   5.  As a user, I would like to be able to view the chart of upcoming events in the city, so that I can see the upcoming events in each city graphically.
       *   Scenario 1: Show a chart with the number of upcoming events in each city.
+
+## Features
+- Filter events by city.
+- Show/hide event details.
+- Specify the number of events.
+- View the previously loaded events offline.
+- Add an app shortcut to the home screen.
+- Display a graphical chart showing the number of upcoming events by city.
+## Technologies:
+- JavaScript
+- React
+- axios
+- ReCharts
+- AWS Lambda
+- Google Authentication 
+- Google Calendar API
+- TDD Jest
+## How to use:
+Navigate to the: https://hamedghd.github.io/meet/
+Sign in with your google account.
